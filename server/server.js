@@ -1,9 +1,4 @@
-let guessArray = [
-  {playerOne: 'GuessOne'},
-  {playerTwo: 'GuessTwo'},
-  {playerThree: 'GuessThree'},
-  {playerFour: 'GuessFour'}
-]; // end guessArray
+let guessArray = []; // end guessArray
 
 const express = require('express');
 const bodyParser = require('body-parser')
@@ -26,7 +21,7 @@ app.get('/guesses', (req, res) => {
 
 app.post('/guesses', (req, res) => {
   console.log('in post /guesses');
-  console.log('req.body', req.body);
+  console.log(guessArray);
   guessArray.push(req.body);
   res.sendStatus(201);
 })

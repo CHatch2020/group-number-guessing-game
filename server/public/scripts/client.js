@@ -5,6 +5,28 @@ function handleReady() {
   $('#submitButton').on('click', submitGuesses);
 };
 
+function renderGuesses(){
+  $.ajax({
+    method: 'GET',
+    url: '/guesses'
+  }).then((res) => {
+    console.log('response', res);
+    $('#playerGuess').empty();
+
+    for (let guess of res) {
+      $('#playerGuess').append(`
+      <li>Player 1: ${guess.playerOne}</li>
+      <li>Player 2: ${guess.playerTwo}</li>
+      <li>Player 3: ${guess.playerThree}</li>
+      <li>Player 4: ${guess.playerFour}</li>
+      <p></p>
+      `)
+    }
+  }).catch((error) => {
+    console.log('error', error);
+  })
+}; // end renderGuesses
+
 function submitGuesses() {
 let guessRound = {
   playerOne: $('#player1').val(),
@@ -18,7 +40,8 @@ $.ajax({
   data: guessRound
 }).then((res) => {
   console.log('It worked');
-  
+  renderGuesses();
+  clearInputs();
 }).catch((error) => {
   console.log('FAILED');
 })
