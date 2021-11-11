@@ -1,5 +1,7 @@
 $(document).ready(handleReady);
 
+let count = 0;
+
 function handleReady() {
   console.log("jquery is loaded!");
   $('#submitButton').on('click', submitGuesses);
@@ -11,6 +13,7 @@ function renderGuesses(){
     url: '/guesses'
   }).then((res) => {
     console.log('response', res);
+    
     $('#playerGuess').empty();
 
     for (let guess of res) {
@@ -45,6 +48,7 @@ $.ajax({
 }).catch((error) => {
   console.log('FAILED');
 })
+countRounds();
 }; // end submitGuesses
 
 function clearInputs(){
@@ -53,3 +57,10 @@ function clearInputs(){
   $('#player3').val('');
   $('#player4').val('');
 }; // end clearInputs
+
+function countRounds() {
+  let guessCounter = count += 1;
+  let holdGuessCount = $('#guessCount');
+  holdGuessCount.empty();
+  holdGuessCount.append(guessCounter);
+}; // end countRounds
