@@ -22,7 +22,8 @@ function renderGuesses(){
       <li>Player 2: ${guess.playerTwo}</li>
       <li>Player 3: ${guess.playerThree}</li>
       <li>Player 4: ${guess.playerFour}</li>
-      <p></p>
+      <p><button id="delete">Delete</button></p>
+      <hr>
       `)
     }
   }).catch((error) => {
