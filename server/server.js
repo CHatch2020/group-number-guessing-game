@@ -16,8 +16,8 @@ let randomNumberGenerator = require('./modules/randomNumber.js');
 // GET & POST Routes go here
 app.get('/guesses', (req, res) => {
   console.log('in get /guesses');
-  checkValues();
-  res.send(guessArray);
+  evaluateGuesses(targetNum);
+  res.send(evaluatedArray);
 }); // end get /guesses
 
 app.post('/guesses', (req, res) => {
@@ -35,44 +35,54 @@ function randomNum(min,max) {
   return randomNumberGenerator(min,max)
 }; // end randomNum
 
-let target = randomNum(1, 25);
+let evaluatedArray = [];
+let targetNum = randomNum(1, 25);
 
-
-function checkValues() {
-console.log(target);
-
-
-  for (let round of guessArray) {
-    if (Number(round.playerOne) === target) {
-      round.playerOne = `${round.playerOne} : Yay, You WIN!`
-    } else if(Number(round.playerOne) > target) {
-      round.playerOne = `${round.playerOne} : Ope, too high!`
-    } else {
-      round.playerOne = `${round.playerOne} : Darn, too low!`
+function evaluateGuesses(targetNum){
+  console.log(targetNum);
+  
+  evaluatedArray = [];
+  for (let round of guessArray){
+    let evaluatedRound = {
+      playerOne: `${round.PlayerOne}`,
+      playerTwo: `${round.PlayerTwo}`,
+      playerThree: `${round.PlayerThree}`,
+      playerFour: `${round.PlayerFour}`,
     };
-
-    if (Number(round.playerTwo) === target) {
-      round.playerTwo = `${round.playerTwo} : Yay, You WIN!`
-    } else if(Number(round.playerTwo) > target) {
-      round.playerTwo = `${round.playerTwo} : Ope, too high!`
-    } else {
-      round.playerTwo = `${round.playerTwo} : Darn, too low!`
+    //Check Player One
+    if (Number(round.playerOne) === targetNum){
+      evaluatedRound.playerOne = `${round.playerOne}: Winner!`;
+    } else if (Number(round.playerOne) > targetNum){
+      evaluatedRound.playerOne = `${round.playerOne}: Too High`;
+    } else if (Number(round.playerOne) < targetNum){
+      evaluatedRound.playerOne = `${round.playerOne}: Too Low`;
     };
-
-    if (Number(round.playerThree) === target) {
-      round.playerThree = `${round.playerThree} : Yay, You WIN!`
-    } else if(Number(round.playerThree) > target) {
-      round.playerThree = `${round.playerThree} : Ope, too high!`
-    } else {
-      round.playerThree = `${round.playerThree} : Darn, too low!`
+    //Check Player Two
+    if (Number(round.playerTwo) === targetNum){
+      evaluatedRound.playerTwo = `${round.playerTwo}: Winner!`;
+    } else if (Number(round.playerTwo) > targetNum){
+      evaluatedRound.playerTwo = `${round.playerTwo}: Too High`;
+    } else if (Number(round.playerTwo) < targetNum){
+      evaluatedRound.playerTwo = `${round.playerTwo}: Too Low`;
     };
-
-    if (Number(round.playerFour) === target) {
-      round.playerFour = `${round.playerFour} : Yay, You WIN!`
-    } else if(Number(round.playerFour) > target) {
-      round.playerFour = `${round.playerFour} : Ope, too high!`
-    } else {
-      round.playerFour = `${round.playerFour} : Darn, too low!`
+    //Check Player Three
+    if (Number(round.playerThree) === targetNum){
+      evaluatedRound.playerThree = `${round.playerThree}: Winner!`;
+    } else if (Number(round.playerThree) > targetNum){
+      evaluatedRound.playerThree = `${round.playerThree}: Too High`;
+    } else if (Number(round.playerThree) < targetNum){
+      evaluatedRound.playerThree = `${round.playerThree}: Too Low`;
     };
-  }; // end loop
-}; // end checkValues
+    //Check Player Four
+    if (Number(round.playerFour) === targetNum){
+      evaluatedRound.playerFour = `${round.playerFour}: Winner!`;
+    } else if (Number(round.playerFour) > targetNum){
+      evaluatedRound.playerFour = `${round.playerFour}: Too High`;
+    } else if (Number(round.playerFour) < targetNum){
+      evaluatedRound.playerFour = `${round.playerFour}: Too Low`;
+    };
+    evaluatedArray.push(evaluatedRound);
+  }
+  console.log(guessArray);
+  console.log(evaluatedArray);
+};
