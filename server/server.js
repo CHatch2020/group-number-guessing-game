@@ -31,35 +31,45 @@ app.listen(PORT, () => {
   console.log ('Server is running on port', PORT)
 }); // end listen on PORT
 
+function randomNum(min,max) {
+  return randomNumberGenerator(min,max)
+}; // end randomNum
+
+let target = randomNum(1, 25);
+
+
 function checkValues() {
+console.log(target);
+
+
   for (let round of guessArray) {
-    if (round.playerOne === randomNumberGenerator) {
+    if (Number(round.playerOne) === target) {
       round.playerOne = `${round.playerOne} : Yay, You WIN!`
-    } else if(round.playerOne > randomNumberGenerator) {
+    } else if(Number(round.playerOne) > target) {
       round.playerOne = `${round.playerOne} : Ope, too high!`
     } else {
       round.playerOne = `${round.playerOne} : Darn, too low!`
     };
 
-    if (round.playerTwo === randomNumberGenerator) {
+    if (Number(round.playerTwo) === target) {
       round.playerTwo = `${round.playerTwo} : Yay, You WIN!`
-    } else if(round.playerTwo > randomNumberGenerator) {
+    } else if(Number(round.playerTwo) > target) {
       round.playerTwo = `${round.playerTwo} : Ope, too high!`
     } else {
       round.playerTwo = `${round.playerTwo} : Darn, too low!`
     };
 
-    if (round.playerThree === randomNumberGenerator) {
+    if (Number(round.playerThree) === target) {
       round.playerThree = `${round.playerThree} : Yay, You WIN!`
-    } else if(round.playerThree > randomNumberGenerator) {
+    } else if(Number(round.playerThree) > target) {
       round.playerThree = `${round.playerThree} : Ope, too high!`
     } else {
       round.playerThree = `${round.playerThree} : Darn, too low!`
     };
 
-    if (round.playerFour === randomNumberGenerator) {
+    if (Number(round.playerFour) === target) {
       round.playerFour = `${round.playerFour} : Yay, You WIN!`
-    } else if(round.playerFour > randomNumberGenerator) {
+    } else if(Number(round.playerFour) > target) {
       round.playerFour = `${round.playerFour} : Ope, too high!`
     } else {
       round.playerFour = `${round.playerFour} : Darn, too low!`
