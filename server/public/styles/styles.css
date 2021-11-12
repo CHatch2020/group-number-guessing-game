@@ -1,0 +1,13 @@
+.restartButton {
+    display: none;
+}
+.showButton {
+    display: block;
+}
+
+html {
+    background-image: linear-gradient(45deg, antiquewhite, white, mediumspringgreen);
+    background-image: no-repeat;
+    background-attachment: fixed;
+}
+

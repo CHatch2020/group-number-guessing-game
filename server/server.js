@@ -27,6 +27,8 @@ app.post('/guesses', (req, res) => {
   res.sendStatus(201);
 }); // end post /guesses
 
+
+
 app.listen(PORT, () => {
   console.log ('Server is running on port', PORT)
 }); // end listen on PORT
@@ -40,7 +42,7 @@ let targetNum = randomNum(1, 25);
 
 function evaluateGuesses(targetNum){
   console.log(targetNum);
-  
+  // create a new array to store the data plus the strings
   evaluatedArray = [];
   for (let round of guessArray){
     let evaluatedRound = {
@@ -81,6 +83,7 @@ function evaluateGuesses(targetNum){
     } else if (Number(round.playerFour) < targetNum){
       evaluatedRound.playerFour = `${round.playerFour}: Too Low`;
     };
+    // push the new data to the evaluatedRound
     evaluatedArray.push(evaluatedRound);
   }
   console.log(guessArray);
